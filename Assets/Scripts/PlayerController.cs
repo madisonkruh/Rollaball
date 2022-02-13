@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
+using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour
 {
     // speed starting value 0
@@ -71,7 +73,18 @@ public class PlayerController : MonoBehaviour
 
         // if player falls below threshold then restart level
         if (transform.position.y < threshold){
-             transform.position = new Vector3(0, 0, 0);
+            SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+            // transform.position = new Vector3(0, 0, 0);
+            // count = 0;
+
+            // // reactivate(); // set all PickUp objects to active
+            // GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("PickUp");
+         
+            // foreach (GameObject go in gameObjects) {
+            //     go.SetActive(true);    
+            // }  
+
+            // SetCountText(); // update text displaying number of PickUps collected
         }
     }
 
@@ -87,5 +100,4 @@ public class PlayerController : MonoBehaviour
             SetCountText(); // update text displaying number of PickUps collected
         }
     }
-
 }

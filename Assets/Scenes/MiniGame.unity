@@ -904,7 +904,7 @@ MonoBehaviour:
   speed: 10
   countText: {fileID: 1848136963}
   winTextObject: {fileID: 787511771}
-  threshold: 0
+  threshold: -40
 --- !u!1001 &1165173931
 PrefabInstance:
   m_ObjectHideFlags: 0
