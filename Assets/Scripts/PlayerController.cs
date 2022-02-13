@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         // if player falls below threshold then restart level
         if (transform.position.y < threshold){
-             transform.position = new Vector3(0, 0.5, 0);
+             transform.position = new Vector3(0, 0, 0);
         }
     }
 
