@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+// Include the namespace required to use Unity UI and Input System
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    // spped starting value 0
+    // speed starting value 0
     public float speed = 0;
+
+    // for the Text UI game objects
+	public TextMeshProUGUI countText; // holds reference to UI text component on Count Text object
+	public GameObject winTextObject; // holds reference to UI text component on Win Text object
 
     // will hold reference to Rigidbody being accessed
     private Rigidbody rb;
@@ -17,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
-    // Start is called before the first frame update
+    // At the start of the game..
     void Start()
     {
         // reference to Rigidbody component attached to the Player sphere
@@ -25,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
         // set intial value to 0
         count = 0;
+
+        SetCountText();
+
+        // Set the text property of the Win Text UI to an empty string, making the 'You Win' (game over message) blank
+        winTextObject.SetActive(false);
     }
 
     private void OnMove(InputValue movementValue)
@@ -35,6 +47,18 @@ public class PlayerController : MonoBehaviour
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
+
+    void SetCountText()
+	{
+		countText.text = "Count: " + count.ToString();
+
+        // if collect all 12 PickUp objects
+		if (count >= 12) 
+		{
+            // activate Win Text
+            winTextObject.SetActive(true);
+		}
+	}
 
     private void FixedUpdate()
     {
@@ -51,8 +75,10 @@ public class PlayerController : MonoBehaviour
     {
         // if other is tagged PickUp (ie. is a PickUp Prefab)
         if(other.gameObject.CompareTag("PickUp")){
-            // deactivate 
-            other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false); // deactivate 
+            count++;
+            SetCountText(); // update text displaying number of PickUps collected
         }
     }
+
 }
