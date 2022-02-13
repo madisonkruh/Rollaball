@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // speed starting value 0
-    public float speed = 0;
+    public float speed;
 
     // for the Text UI game objects
 	public TextMeshProUGUI countText; // holds reference to UI text component on Count Text object
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         // set intial value to 0
         count = 0;
 
+        speed = 10;
         SetCountText();
 
         // Set the text property of the Win Text UI to an empty string, making the 'You Win' (game over message) blank
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // detects contact between Player object and Pickup object without creating collision
+    // detects contact between Player object and Pickup or SpeedBoost object without creating collision
     // called by Unity when Player object first touches a trigger collider
     // will be passed a reference to trigger collider that has been touched (other)
     private void OnTriggerEnter(Collider other)
@@ -87,6 +88,29 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false); // deactivate 
             count++;
             SetCountText(); // update text displaying number of PickUps collected
+        }
+
+        // if (other.gameObject.CompareTag("SpeedBoost")) {
+        //     //goUp();
+        //     StartCoroutine("ReduceSpeedAfter5Seconds");
+        // }
+    }
+
+    // IEnumerator ReduceSpeedAfter5Seconds() {
+    //     speed = speed * 20;
+    //     yield return new WaitForSeconds(1);
+    //     speed = speed / 20;
+    // }
+    
+    void OnCollisionStay(Collision collider){
+        if (collider.gameObject.CompareTag ("SpeedBoost")) {
+            speed = 30;
+        }
+    }
+
+     void OnCollisionExit(Collision collider){
+        if (collider.gameObject.CompareTag ("SpeedBoost")) {
+            speed = 10;
         }
     }
 }
