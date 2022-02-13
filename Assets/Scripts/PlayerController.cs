@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
+    public float threshold; // if player height below threshold, then trigger respawn
+
     // At the start of the game..
     void Start()
     {
@@ -66,6 +68,11 @@ public class PlayerController : MonoBehaviour
 
         // add force to Rigidbody of Player sphere
         rb.AddForce(movement * speed);
+
+        // if player falls below threshold then restart level
+        if (transform.position.y < threshold){
+             transform.position = new Vector3(0, 0.5, 0);
+        }
     }
 
     // detects contact between Player object and Pickup object without creating collision

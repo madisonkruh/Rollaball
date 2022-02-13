@@ -904,6 +904,7 @@ MonoBehaviour:
   speed: 10
   countText: {fileID: 1848136963}
   winTextObject: {fileID: 787511771}
+  threshold: 0
 --- !u!1001 &1165173931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,7 +1285,7 @@ Transform:
   m_GameObject: {fileID: 1500432384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 20.5}
+  m_LocalScale: {x: 0.5, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1445841102}
   m_RootOrder: 1
