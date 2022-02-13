@@ -74,17 +74,6 @@ public class PlayerController : MonoBehaviour
         // if player falls below threshold then restart level
         if (transform.position.y < threshold){
             SceneManager.LoadScene( SceneManager.GetActiveScene().name );
-            // transform.position = new Vector3(0, 0, 0);
-            // count = 0;
-
-            // // reactivate(); // set all PickUp objects to active
-            // GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("PickUp");
-         
-            // foreach (GameObject go in gameObjects) {
-            //     go.SetActive(true);    
-            // }  
-
-            // SetCountText(); // update text displaying number of PickUps collected
         }
     }
 
